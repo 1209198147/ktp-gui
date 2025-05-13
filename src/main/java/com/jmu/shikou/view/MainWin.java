@@ -1,4 +1,9 @@
+package com.jmu.shikou.view;
+
 import com.google.gson.internal.LinkedTreeMap;
+import com.jmu.shikou.ktpApi.API;
+import com.jmu.shikou.config.Config;
+import com.jmu.shikou.entity.Course;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,7 +20,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
 
 public class MainWin extends JFrame {
     private JLabel state;
@@ -31,7 +35,7 @@ public class MainWin extends JFrame {
             ((JFrame) source).dispose();
         }
         setTitle("课堂派客服端 状态：%s\t".formatted(Config.isLogin?"已登录":"未登录"));
-        URL iconURL = getClass().getResource("img/th.png");
+        URL iconURL = getClass().getClassLoader().getResource("img/th.png");
         ImageIcon imageIcon = new ImageIcon(iconURL);
         setIconImage(imageIcon.getImage());
         setSize(800, 800);
@@ -62,7 +66,7 @@ public class MainWin extends JFrame {
         }
         setTitle("课堂派客服端\t状态：已登录\t[你好，来自"+Config.user.name+"]\t学校："+Config.user.school+"\t学号："+Config.user.stno);
         API.getSemesterList();
-        //API.setSemesterCourseList(Config.user.curSemester);
+        //com.jmu.czh.ktpApi.API.setSemesterCourseList(com.jmu.czh.config.Config.user.curSemester);
 
         initUi();
     }
@@ -100,7 +104,12 @@ public class MainWin extends JFrame {
                     public void run() {
                         LoginForm.prefs.put("autoLogin", "true");
                         LoginForm.prefs.put("token", Config.user.token);
-                        try (BufferedWriter writer = new BufferedWriter(new FileWriter("token.txt"))) {
+                        File tokenFile = new File(Config.tokenSavePath);
+                        if(!tokenFile.exists()){
+                            tokenFile.mkdirs();
+                        }
+                        System.out.println(tokenFile.getPath()+ File.separator +Config.user.account+".txt");
+                        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tokenFile.getPath()+ File.separator +Config.user.name+".txt"))) {
                             writer.write(Config.user.token);
                             JOptionPane.showMessageDialog(MainWin.this, "保存成功，保存在token.txt中！");
                         } catch (IOException e) {
@@ -195,14 +204,14 @@ public class MainWin extends JFrame {
                     }).start();
                 }
             });
-            //        DefaultListModel<Course> model = new DefaultListModel<>();
+            //        DefaultListModel<com.jmu.czh.entity.Course> model = new DefaultListModel<>();
             JScrollPane jScrollPane = new JScrollPane(courseJList);
             //
-            //        if(!Config.user.courseList.isEmpty()){
+            //        if(!com.jmu.czh.config.Config.user.courseList.isEmpty()){
             //
-            //            for(Object i: Config.user.courseList){
+            //            for(Object i: com.jmu.czh.config.Config.user.courseList){
             //                LinkedTreeMap item = (LinkedTreeMap) i;
-            //                model.addElement(new Course((String)item.get("id"), (String)item.get("uid"), (String)item.get("coursename"), (String)item.get("code"), (String)item.get("classname"), (String)item.get("semester"), (String)item.get("term"), (String)item.get("username"), (String)item.get("total"), (String)item.get("selectStudentCount")));
+            //                model.addElement(new com.jmu.czh.entity.Course((String)item.get("id"), (String)item.get("uid"), (String)item.get("coursename"), (String)item.get("code"), (String)item.get("classname"), (String)item.get("semester"), (String)item.get("term"), (String)item.get("username"), (String)item.get("total"), (String)item.get("selectStudentCount")));
             //            }
             //        }
             //        courseJList.setFont(new Font(null, Font.BOLD, 14));

@@ -1,3 +1,7 @@
+package com.jmu.shikou.view;
+
+import com.jmu.shikou.config.Config;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -5,7 +9,7 @@ import java.net.URL;
 public class UserInfoWin extends JFrame {
     UserInfoWin(){
         setTitle("用户信息");
-        URL iconURL = getClass().getResource("img/th.png");
+        URL iconURL = getClass().getClassLoader().getResource("img/th.png");
         ImageIcon imageIcon = new ImageIcon(iconURL);
         setIconImage(imageIcon.getImage());
         setSize(600, 300);
@@ -31,7 +35,7 @@ public class UserInfoWin extends JFrame {
         mobile.setFont(font);
         token.setFont(font);
 
-        name.setText("用户名："+Config.user.name);
+        name.setText("用户名："+ Config.user.name);
         account.setText("账号："+Config.user.account);
         school.setText("学校："+Config.user.school);
         stno.setText("学号："+Config.user.stno);

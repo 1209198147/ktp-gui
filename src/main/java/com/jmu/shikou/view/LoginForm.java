@@ -1,3 +1,8 @@
+package com.jmu.shikou.view;
+
+import com.jmu.shikou.ktpApi.API;
+import com.jmu.shikou.config.Config;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -19,7 +24,7 @@ public class LoginForm extends JFrame {
         System.out.println("登录");
         // 设置窗口属性  
         setTitle("登录");
-        URL iconURL = getClass().getResource("img/th.png");
+        URL iconURL = getClass().getClassLoader().getResource("img/th.png");
         ImageIcon imageIcon = new ImageIcon(iconURL);
         setIconImage(imageIcon.getImage());
         setSize(400, 200);

@@ -1,4 +1,8 @@
+package com.jmu.shikou.view;
+
 import com.google.gson.internal.LinkedTreeMap;
+import com.jmu.shikou.ktpApi.API;
+import com.jmu.shikou.config.Config;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
 public class TaskWin extends JFrame {
     TaskWin(){
         setTitle("未交作业查询 -查询中...");
-        URL iconURL = getClass().getResource("img/th.png");
+        URL iconURL = getClass().getClassLoader().getResource("img/th.png");
         ImageIcon imageIcon = new ImageIcon(iconURL);
         setIconImage(imageIcon.getImage());
         setSize(1000, 600);

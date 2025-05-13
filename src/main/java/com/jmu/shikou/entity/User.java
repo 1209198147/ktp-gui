@@ -1,4 +1,4 @@
-import com.google.gson.internal.LinkedTreeMap;
+package com.jmu.shikou.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

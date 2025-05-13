@@ -1,15 +1,13 @@
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.BufferedReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+package com.jmu.shikou.ktpApi;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import com.google.gson.*;
 import com.google.gson.internal.LinkedTreeMap;
+import com.jmu.shikou.config.Config;
+import com.jmu.shikou.entity.User;
+import com.jmu.shikou.utils.HttpRequest;
 
 public class API {
     private static String token;

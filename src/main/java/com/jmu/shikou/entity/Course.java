@@ -1,3 +1,5 @@
+package com.jmu.shikou.entity;
+
 public class Course {
     public String id;
     public String uid;

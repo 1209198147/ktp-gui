@@ -1,4 +1,8 @@
+package com.jmu.shikou.view;
+
 import com.google.gson.internal.LinkedTreeMap;
+import com.jmu.shikou.ktpApi.API;
+import com.jmu.shikou.entity.Course;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +27,7 @@ public class CourseWin extends JFrame {
     private ArrayList attenceList;
     CourseWin(Course course){
         setTitle(course.name+"-详细");
-        URL iconURL = getClass().getResource("img/th.png");
+        URL iconURL = getClass().getClassLoader().getResource("img/th.png");
         ImageIcon imageIcon = new ImageIcon(iconURL);
         setIconImage(imageIcon.getImage());
         setSize(1000, 600);
